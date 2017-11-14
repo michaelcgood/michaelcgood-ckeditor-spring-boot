@@ -225,17 +225,13 @@
 											data : formData,
 											dataType : 'text',
 											success : function(result) {
-												if (result.status == "Done") {
-													$("#postResultDiv")
-															.html(
-																	"<p style='background-color:#7FA7B0; color:white; padding:20px 20px 20px 20px'>"
-																			+ "Post Successfully! "														
-																			+ "</p>");
-												} else {
-													$("#postResultDiv")
-															.html(
-																	"<strong>Error</strong>");
-												}
+												
+											$("#postResultDiv")
+													.html(
+															"<p style='background-color:#7FA7B0; color:white; padding:20px 20px 20px 20px'>"
+																	+ "Post Successfully! "														
+																	+ "</p>");
+												
 												console.log(result);
 											},
 											error : function(e) {
@@ -324,7 +320,7 @@
 							// filebrowserUploadUrl: 'http://example.com/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
 							/*********************** File management support ***********************/
 							// Make the editing area bigger than default.
-							height : 800,
+							height : 400,
 							// An array of stylesheets to style the WYSIWYG area.
 							// Note: it is recommended to keep your own styles in a separate file in order to make future updates painless.
 							contentsCss : [ 'https://cdn.ckeditor.com/4.7.3/full-all/contents.css' ],
