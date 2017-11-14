@@ -35,7 +35,7 @@ public class APIController {
     HTMLFormatter format;
     
     @GetMapping(value={"/show/","/show/{sid}"})
-    public ResponseEntity<?> getRule(@RequestParam String sid, Model model){
+    public ResponseEntity<?> getSong(@RequestParam String sid, Model model){
         ResponseModel response = new ResponseModel();
         System.out.println("SID :::::" + sid);
         ArrayList<String> musicText = new ArrayList<String>();
@@ -48,7 +48,7 @@ public class APIController {
                 musicText.add(songModel.getArtist());
                 musicText.add(songModel.getSongTitle());
                 String filterText = format.changeJsonToHTML(musicText);
-                System.out.println("filtered rule text ::::::::" + filterText);
+                System.out.println("formatted song text ::::::::" + filterText);
                 response.setData(filterText);
                 
             } else if(songModel.getUpdated()==true){
@@ -66,7 +66,7 @@ public class APIController {
     }
     
     @PostMapping(value={"/save/","/save/[sid]"}, consumes = MediaType.TEXT_HTML_VALUE)
-    public @ResponseBody ResponseModel saveRule( @RequestBody String body, @RequestParam String sid){
+    public @ResponseBody ResponseModel saveSong( @RequestBody String body, @RequestParam String sid){
         ResponseModel response = new ResponseModel();
         response.setData(body);
         SongModel oldSong = songDAO.findOne(sid);
