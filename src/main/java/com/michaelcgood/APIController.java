@@ -86,12 +86,7 @@ public class APIController {
             UpdatedSong currentSong = updatedDAO.findBysid(sid);
             currentSong.setHtml(body);
             updatedDAO.save(currentSong);
-        }
-        
-        
-        System.out.println("response body ::::::::::" + body);
-        System.out.println("POST Response :::::::::" + response.getData());
-        
+        }        
         
         return response;
     }

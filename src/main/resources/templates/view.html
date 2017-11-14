@@ -69,10 +69,10 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:each="ruleList : ${ruleList}">
-								<td th:text="${ruleList.artist}">Text ...</td>
-								<td th:text="${ruleList.songTitle}">Text ...</td>
-								<td><button th:onclick="|getRule('${ruleList.id}')|"
+							<tr th:each="songList : ${songList}">
+								<td th:text="${songList.artist}">Text ...</td>
+								<td th:text="${songList.songTitle}">Text ...</td>
+								<td><button th:onclick="|getSong('${songList.id}')|"
 										id="button" class="btn btn-primary btn-condensed">
 										<i class="glyphicon glyphicon-folder-open"></i>
 									</button></td>
@@ -87,19 +87,19 @@
 									th:selected="${pageSize} == ${selectedPageSize}"></option>
 							</select>
 						</div>
-						<div th:if="${ruleList.totalPages != 1}"
+						<div th:if="${songList.totalPages != 1}"
 							class="form-group col-md-11 pagination-centered">
 							<ul class="pagination">
-								<li th:class="${ruleList.number == 0} ? disabled"><a
+								<li th:class="${songList.number == 0} ? disabled"><a
 									class="pageLink"
 									th:href="@{/view/(id=${id}, pageSize=${selectedPageSize}, page=1)}">&laquo;</a>
 								</li>
-								<li th:class="${ruleList.number == 0} ? disabled"><a
+								<li th:class="${songList.number == 0} ? disabled"><a
 									class="pageLink"
-									th:href="@{/view/(id=${id}, pageSize=${selectedPageSize}, page=${ruleList.number})}">&larr;</a>
+									th:href="@{/view/(id=${id}, pageSize=${selectedPageSize}, page=${songList.number})}">&larr;</a>
 								</li>
 								<li
-									th:class="${ruleList.number == (page - 1)} ? '
+									th:class="${songList.number == (page - 1)} ? '
 									active
 									pointer-disabled'"
 									th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}">
@@ -108,14 +108,14 @@
 									th:text="${page}"></a>
 								</li>
 								<li
-									th:class="${ruleList.number + 1 == ruleList.totalPages} ? disabled">
+									th:class="${songList.number + 1 == songList.totalPages} ? disabled">
 									<a class="pageLink"
-									th:href="@{/view/(id=${id}, pageSize=${selectedPageSize}, page=${ruleList.number + 2})}">&rarr;</a>
+									th:href="@{/view/(id=${id}, pageSize=${selectedPageSize}, page=${songList.number + 2})}">&rarr;</a>
 								</li>
 								<li
-									th:class="${ruleList.number + 1 == ruleList.totalPages} ? disabled">
+									th:class="${songList.number + 1 == songList.totalPages} ? disabled">
 									<a class="pageLink"
-									th:href="@{/view/(id=${id}, pageSize=${selectedPageSize}, page=${ruleList.totalPages})}">&raquo;</a>
+									th:href="@{/view/(id=${id}, pageSize=${selectedPageSize}, page=${songList.totalPages})}">&raquo;</a>
 								</li>
 							</ul>
 						</div>
@@ -183,20 +183,19 @@
 
 		}
 
-		function getRule(rule) {
+		function getSong(song) {
 			$.ajax({
-				url : "/api/show/?sid=" + rule,
+				url : "/api/show/?sid=" + song,
 				type : 'GET',
 				dataType : 'text'
 			}).then(function(data) {
 				var length = data.length-2;
 				var datacut = data.slice(9,length);
-				alert(datacut);
 				CKEDITOR.instances.content.setData(datacut);
 
 			});
 
-			$("#form").attr("action", "/api/save/?sid=" + rule);
+			$("#form").attr("action", "/api/save/?sid=" + song);
 
 		};
 

@@ -27,7 +27,6 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
 import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.type.CollectionType;
@@ -126,9 +125,7 @@ public class UploadJob {
             songDAO.insert(songmodel);
             System.out.println("inserted this songmodel ::: " + songmodel);
         }
-        //System.out.println("songs result:::::::::::::" + result.toString());
-        //Iterable<SongModel> resultsB = songDAO.findAll();
-        //System.out.println("Song dao results :::::::" + resultsB.toString());
+
         return songList;
     }
     

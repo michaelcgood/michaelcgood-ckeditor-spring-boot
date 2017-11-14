@@ -97,7 +97,7 @@ public class WebController {
 
          PagerModel pager = new PagerModel(songList.getTotalPages(),songList.getNumber(),BUTTONS_TO_SHOW);
 
-        modelAndView.addObject("ruleList", songList);
+        modelAndView.addObject("songList", songList);
         modelAndView.addObject("selectedPageSize", evalPageSize);
         // add page sizes
         modelAndView.addObject("pageSizes", PAGE_SIZES);
