@@ -1,0 +1,194 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<!-- CSS INCLUDE -->
+<link rel="stylesheet" type="text/css" th:href="@{/theme-default.css}" />
+<link rel="stylesheet" type="text/css" th:href="@{/cropper.min.css}"
+	href="../cropper.min.css" />
+<link rel="stylesheet" type="text/css" th:href="@{/jstree.min.css}"
+	href="../jstree.min.css" />
+<!--  EOF CSS INCLUDE -->
+<!-- EOF CSS INCLUDE -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+<style>
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0} 
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+/* The Close Button */
+.close {
+    color: white;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+</style>
+</head>
+<body>
+
+	<!-- START PAGE CONTAINER -->
+	<div class="page-container page-navigation-toggled">
+
+		<!-- PAGE TITLE -->
+		<div class="page-title">
+			<h2 style="padding-left: 50px;">
+				Uploader
+			</h2>
+		</div>
+		<!-- END PAGE TITLE -->
+		<!-- PAGE CONTENT WRAPPER -->
+		<div class="page-content-wrap">
+			<div class="row" style="padding-left: 40px; padding-right: 10px;">
+				<div id="myModal" class="modal">
+					<div class="modal-content">
+						<div class="modal-header">
+							<span class="close">&times;</span>
+							<h2>Let's see the results</h2>
+						</div>
+						<div class="modal-body">
+							<a th:href="@{/view/(id=${latestMusic})}">click to view results</a>
+						</div>
+						<div class="modal-footer">
+							<h3>You can use the nav menu too</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row" style="padding-left: 40px; padding-right: 10px;">
+				<div class="row-fluid">
+
+					<div class="col-md-12">
+
+
+						<div class="panel panel-default">
+							<div class="panel-body">
+								<h3>
+									<span class="fa fa-download"></span> Dropzone
+								</h3>
+								<form action="#" class="dropzone" id="dropzone"></form>
+							</div>
+						</div>
+						<br /> <br />
+
+
+					</div>
+
+				</div>
+
+
+
+
+			</div>
+			<!-- END PAGE CONTENT WRAPPER -->
+		</div>
+		<!-- END PAGE CONTENT -->
+		<!-- END PAGE CONTAINER -->
+
+		<!-- START SCRIPTS -->
+		<!-- START PLUGINS -->
+		<script type="text/javascript" th:src="@{/jquery.min.js}"></script>
+		<script type="text/javascript" th:src="@{/jquery-ui.min.js}"></script>
+		<script type="text/javascript" th:src="@{/bootstrap.min.js}"></script>
+		<!-- END PLUGINS -->
+
+
+		<script type="text/javascript" th:src="@{/dropzone.min.js}"></script>
+
+
+		<script type="text/javascript" th:src="@{/jquery.dataTables.min.js}"
+			src="../jquery.dataTables.min.js"></script>
+
+		<script th:inline="javascript">
+			Dropzone.options.dropzone = {
+				init : function() {
+					var modal = document.getElementById('myModal');
+					this.on("addedfile", function(file) {
+						modal.style.display = "block";
+					});
+				}
+			};
+			
+			// Get the <span> element that closes the modal
+			var span = document.getElementsByClassName("close")[0];
+			var modal = document.getElementById('myModal');
+
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() {
+			    modal.style.display = "none";
+			}
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+			    if (event.target == modal) {
+			        modal.style.display = "none";
+			    }
+			}
+		</script>
+
+		<!-- END TEMPLATE -->
+	</div>
+	<!-- END SCRIPTS -->
+</body>
+</html>
